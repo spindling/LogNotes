@@ -38,7 +38,7 @@
 
     {{#editNote}}
     <h2>Edit Note</h2>
-    <form action="/editnote" method="post">
+    <form action="/editnote/{{formdata.rowid}}" method="post">
         <label for="title">Title</label>
         <input type="text" name="title" value="{{formdata.title}}" /><br>
 

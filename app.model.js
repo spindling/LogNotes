@@ -31,6 +31,7 @@ async function addNote(data)
 async function editNote(data, id) 
 {
     await db.run("UPDATE Notes SET title=?, content=?, starred=?, image=?, timestamp=?, charcount=? WHERE rowid=?",
-        [data.title, data.content, data.starred, data.image, data.timestamp, data.charcount, id]);
+        [id, data.title, data.content, data.starred, data.image, data.timestamp, data.charcount]);
 }
+
 module.exports = { makeConnection, getAllNotes, deleteNote, addNote, editNote};
