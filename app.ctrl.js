@@ -2,13 +2,19 @@ const express = require ("express");
 const app = express();
 const mustacheExpress = require("mustache-express");
 
+const Model = require("./app.model.js");
+
 app.engine("mustache", mustacheExpress());
 app.set("view_engine", "mustache");
 app.set("views", __dirname + "/views");
 
-app.get("/", function(req, res) {
+Model.makeConnection(); //TODO make sure this runs before app.listen
 
-    res.send("TEST");
+app.get("/", async function(req, res) {
+
+    const notesArray = await Model.getAllNotes();
+    const TPL = { notes: notesArray};
+    res.render("main_page", TPL);
 });
 
 app.listen(3000, () => {console.log("Server listening on port 3000...")});
