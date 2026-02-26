@@ -10,13 +10,18 @@ app.set("views", __dirname + "/views");
 
 Model.makeConnection(); //TODO make sure this runs before app.listen
 
-app.get("/delete/:id", async function(req,res)
+app.get("/deletenote/:id", async function(req,res)
 {
     await Model.deleteNote(req.params.id);
     const notesArray = await Model.getAllNotes();
     res.render("main_page", { notes: notesArray });
 })
 
+app.get("/addnoteform", async function(req,res)
+{
+    const notesArray = await Model.getAllNotes();
+    res.render("main_page", { notes: notesArray, addNote: true });
+});
 
 app.get("/style.css", function (req,res){
   res.sendFile( __dirname + "/style.css")

@@ -11,6 +11,31 @@
     <h1>LogNotes</h1>
 
     <h2>New Note </h2>
+    <p><a href="/addnoteform">Create a new note</a><p>
+    {{#addNote}}
+    <form action="/addnote" method="post">
+        <label for="title">Title</label>
+        <input type="text" name="title" /><br>
+
+        <label for="content">Content</label>
+        <input type="text" name="content" /><br>
+        
+        <label for="starred">Starred</label>
+        <input type="checkbox" name="starred" /><br>
+        
+        <label for="image">Image</label>
+        <input type="image" name="image" /><br>
+        
+        <label for="timestamp">Timestamp</label>
+        <input type="text" name="timestamp" /><br>
+        
+        <label for="charcount">Character Count</label>
+        <input type="number" name="charcount" /><br>
+
+        <input type="submit"/>
+    </form>
+    {{/addNote}}
+
     <h3>Existing Notes</h3>
     <table>
         <tr>
@@ -34,7 +59,7 @@
             <td>{{ image }}</td>
             <td>{{ timestamp }}</td>
             <td>{{ charcount }}</td>
-            <td><a href="/delete/{{rowid}}">Delete
+            <td><a href="/deletenote/{{rowid}}">Delete
 
             
          </tr>
