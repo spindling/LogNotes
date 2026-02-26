@@ -16,4 +16,9 @@ async function getAllNotes()
     const results = await db.all("SELECT rowid, * FROM Notes");
     return results;
 }
-module.exports = { makeConnection, getAllNotes};
+
+async function deleteNote(id)
+{
+    await db.run("DELETE FROM Notes WHERE rowid=?", [id]);
+}
+module.exports = { makeConnection, getAllNotes, deleteNote};
