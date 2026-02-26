@@ -25,11 +25,28 @@ app.get("/addnoteform", async function(req,res)
     res.render("main_page", { notes: notesArray, addNote: true });
 });
 
+app.get("/editnoteform/:id", async function(req,res)
+{
+    const notesArray = await Model.getAllNotes();
+
+     //filtering by rowid
+    res.render("main_page", { notes: notesArray, 
+                                formdata: notesArray.find((x) => x.rowid == req.params.id),
+                                editNote: true });
+});
+
 app.post("/addnote", async function(req,res)
 {
     await Model.addNote(req.body);
     const notesArray = await Model.getAllNotes();
-    res.render("main_page", { notes: notesArray, addNote: true });
+    res.render("main_page", { notes: notesArray });
+});
+
+app.post("/editnote/:id", async function(req,res)
+{
+    await Model.editNote(req.body, req.params.id);
+    const notesArray = await Model.getAllNotes();
+    res.render("main_page", { notes: notesArray});
 });
 
 app.get("/style.css", function (req,res){

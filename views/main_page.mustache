@@ -36,6 +36,31 @@
     </form>
     {{/addNote}}
 
+    {{#editNote}}
+    <h2>Edit Note</h2>
+    <form action="/editnote" method="post">
+        <label for="title">Title</label>
+        <input type="text" name="title" value="{{formdata.title}}" /><br>
+
+        <label for="content">Content</label>
+        <input type="text" name="content" value="{{formdata.content}}"/><br>
+        
+        <label for="starred">Starred</label>
+        <input type="checkbox" name="starred" value="{{formdata.starred}}"/><br>
+        
+        <label for="image">Image</label>
+        <input type="file" accept="image/* "name="image" value="{{formdata.image}}"/><br>
+        
+        <label for="timestamp">Timestamp</label>
+        <input type="text" name="timestamp" value="{{formdata.timestamp}}"/><br>
+        
+        <label for="charcount">Character Count</label>
+        <input type="number" name="charcount" value="{{formdata.charcount}}"/><br>
+
+        <input type="submit"/>
+    </form>
+    {{/editNote}}
+
     <h3>Existing Notes</h3>
     <table>
         <tr>
@@ -55,12 +80,12 @@
             <th>{{ rowid }}</th>
             <td>{{ title }}</td>
             <td>{{ content }}</td>
-            <td>{{ star }}</td>
+            <td>{{ starred }}</td>
             <td>{{ image }}</td>
             <td>{{ timestamp }}</td>
             <td>{{ charcount }}</td>
             <td><a href="/deletenote/{{rowid}}">Delete
-
+            <td><a href="/editnoteform/{{rowid}}">Edit  
             
          </tr>
          {{/notes}}
