@@ -5,7 +5,7 @@ const mustacheExpress = require("mustache-express");
 const Model = require("./app.model.js");
 
 app.engine("mustache", mustacheExpress());
-app.set("view_engine", "mustache");
+app.set("view engine", "mustache");
 app.set("views", __dirname + "/views");
 
 Model.makeConnection(); //TODO make sure this runs before app.listen
