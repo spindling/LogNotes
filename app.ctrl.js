@@ -13,7 +13,8 @@ Model.makeConnection(); //TODO make sure this runs before app.listen
 app.get("/", async function(req, res) {
 
     const notesArray = await Model.getAllNotes();
-    const TPL = { notes: notesArray};
+
+    const TPL = { notes: notesArray };
     res.render("main_page", TPL);
 });
 

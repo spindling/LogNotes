@@ -11,6 +11,29 @@
     <h1>LogNotes</h1>
 
     <h2>New Note </h2>
-    <<h3>Existing Notes</h3>
+    <h3>Existing Notes</h3>
+    <table>
+        <tr>
+            <th>Title</th>
+            <th>Content</th>
+            <th>Starred</th>
+            <th>Image</th>
+            <th>Timestamp</th>
+            <th>Character Count</th>
+        </tr>
+
+        {{#notes}}
+        <tr>
+            <td>{{ title }}</td>
+            <td>{{ content }}</td>
+            <td>{{ star }}</td>
+            <td>{{ image }}</td>
+            <td>{{ timestamp }}</td>
+            <td>{{ charcount }}</td>
+
+            
+         </tr>
+         {{/notes}}
+    </table>
   </body>
 </html>

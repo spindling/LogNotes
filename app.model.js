@@ -16,4 +16,4 @@ async function getAllNotes()
     const results = await db.all("SELECT rowid, * FROM Notes");
     return results;
 }
-module.exports = { makeConnection };
+module.exports = { makeConnection, getAllNotes};
