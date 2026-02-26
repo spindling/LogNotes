@@ -21,4 +21,10 @@ async function deleteNote(id)
 {
     await db.run("DELETE FROM Notes WHERE rowid=?", [id]);
 }
-module.exports = { makeConnection, getAllNotes, deleteNote};
+
+async function addNote(data) 
+{
+    await db.run("INSERT INTO Notes VALUES (?,?,?,?,?,?)",
+        [data.title, data.content, data.star, data.image, data.timestamp, data.charcount]);
+}
+module.exports = { makeConnection, getAllNotes, deleteNote, addNote};

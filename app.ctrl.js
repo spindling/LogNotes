@@ -8,6 +8,8 @@ app.engine("mustache", mustacheExpress());
 app.set("view engine", "mustache");
 app.set("views", __dirname + "/views");
 
+app.use( express.urlencoded({extended: false}) ); //makes form data available in req.body
+
 Model.makeConnection(); //TODO make sure this runs before app.listen
 
 app.get("/deletenote/:id", async function(req,res)
@@ -19,6 +21,13 @@ app.get("/deletenote/:id", async function(req,res)
 
 app.get("/addnoteform", async function(req,res)
 {
+    const notesArray = await Model.getAllNotes();
+    res.render("main_page", { notes: notesArray, addNote: true });
+});
+
+app.post("/addnote", async function(req,res)
+{
+    await Model.addNote(req.body);
     const notesArray = await Model.getAllNotes();
     res.render("main_page", { notes: notesArray, addNote: true });
 });
