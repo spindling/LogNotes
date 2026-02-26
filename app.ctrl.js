@@ -10,6 +10,10 @@ app.set("views", __dirname + "/views");
 
 Model.makeConnection(); //TODO make sure this runs before app.listen
 
+app.get("/style.css", function (req,res){
+  res.sendFile( __dirname + "/style.css")
+});
+
 app.get("/", async function(req, res) {
 
     const notesArray = await Model.getAllNotes();
