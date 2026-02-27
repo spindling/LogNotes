@@ -90,6 +90,15 @@ app.get("/resetdatabase", async function(req,res)
     res.render("main_page", { notes: notesArray });
 });
 
+app.get("/sort", async function(req,res)
+{
+    
+    const selection = req.params;
+    res.send(selection);
+    //const notesArray = await Model.getAllNotes();
+    //res.render("main_page", { notes: notesArray });
+});
+
 app.get("/style.css", function (req,res){
   res.sendFile( __dirname + "/style.css")
 });

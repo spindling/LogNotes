@@ -54,5 +54,8 @@ async function resetDatabase()
 
 }
 
-
-module.exports = { makeConnection, getAllNotes, deleteNote, addNote, editNote, replaceImage, deleteImage, resetDatabase};
+async function sortDatabase(data)
+{
+    
+}
+module.exports = { makeConnection, getAllNotes, deleteNote, addNote, editNote, replaceImage, deleteImage, resetDatabase, sortDatabase};
