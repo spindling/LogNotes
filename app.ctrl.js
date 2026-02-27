@@ -10,7 +10,6 @@ app.set("views", __dirname + "/views");
 
 app.use( express.urlencoded({extended: false}) ); //makes form data available in req.body
 
-Model.makeConnection(); //TODO make sure this runs before app.listen
 
 app.get("/deletenote/:id", async function(req,res)
 {
@@ -59,4 +58,10 @@ app.get("/", async function(req, res) {
     res.render("main_page", { notes: notesArray });
 });
 
-app.listen(3000, () => {console.log("Server listening on port 3000...")});
+async function startServer()
+{
+    await Model.makeConnection();
+    app.listen(3000, () => {console.log("Server listening on port 3000...")});
+}
+
+startServer();
