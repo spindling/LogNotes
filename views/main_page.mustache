@@ -63,14 +63,19 @@
     
     <h4>Sort by:</h4>
     <form action="/sort" method="get">
-      <input type="radio" id="titlesort" name="sort" value="title">
+      <label for="order">Ascending</label>
+      <input type="radio" id="sortascend" name="order" value="ASC">
+      <label for="order">Descending</label>
+      <input type="radio" id="sortdescend" name="order" value="DESC"><br><br>
+      <input type="radio" id="titlesort" name="sortby" value="title">
       <label for="titlesort">Title</label><br>
-      <input type="radio" id="datesort" name="sort" value="date">
+      <input type="radio" id="datesort" name="sortby" value="timestamp">
       <label for="datesort">Date Created</label><br>
-      <input type="radio" id="charcountsort" name="sort" value="charcount">
+      <input type="radio" id="charcountsort" name="sortby" value="charcount">
       <label for="charcountsort">Character Count</label><br>
       <input type="submit"/>
     </form>
+
 
     <p><a href="/resetdatabase">Delete all notes</a></p>
     <table>

@@ -54,9 +54,9 @@ async function resetDatabase()
 
 }
 
-async function sortDatabase(sortby)
+async function sortDatabase(sortby, order)
 {
-    const select_statement = "SELECT rowid, * FROM Notes ORDER BY " + sortby + " DESC";
+    const select_statement = "SELECT rowid, * FROM Notes ORDER BY " + sortby + " " + order;
     const results = await db.all(select_statement);
     return results;
 }

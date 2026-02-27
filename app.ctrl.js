@@ -93,8 +93,8 @@ app.get("/resetdatabase", async function(req,res)
 app.get("/sort", async function(req,res)
 {
     
-    const sortedNotes = await Model.sortDatabase(req.query.sortby);
-    
+    const sortedNotes = await Model.sortDatabase(req.query.sortby, req.query.order);
+    //res.send(req.query);
     res.render("main_page", { notes: sortedNotes });
 });
 
