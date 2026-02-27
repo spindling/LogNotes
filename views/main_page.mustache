@@ -61,6 +61,16 @@
     </form>
     {{/editNote}}
 
+    {{#replaceImage}}
+    <h2>Replace Image</h2>
+    <form action="/replaceimage/{{formdata.rowid}}" method="post">
+        <label for="image">Image</label>
+        <input type="file" accept="image/* "name="image" value="{{formdata.image}}"/><br>
+        <input type="submit"/>
+
+    </form>
+    {{/replaceImage}}
+
     <h3>Existing Notes</h3>
     <table>
         <tr>
@@ -86,7 +96,8 @@
             <td>{{ charcount }}</td>
             <td><a href="/deletenote/{{rowid}}">Delete
             <td><a href="/editnoteform/{{rowid}}">Edit  
-            
+            <td><a href="/replaceimageform/{{rowid}}">Replace Image
+
          </tr>
          {{/notes}}
     </table>

@@ -60,12 +60,24 @@ app.post("/editnote/:id", async function(req,res)
     res.render("main_page", { notes: notesArray});
 });
 
+app.get("/replaceimageform/:id", async function(req,res)
+{
+ 
+    const notesArray = await Model.getAllNotes();
+
+    res.render("main_page", { notes: notesArray, 
+                                formdata: notesArray.find((x) => x.rowid == req.params.id),
+                                replaceImage: true });
+}); 
+
 app.post("/replaceimage/:id", async function(req,res)
 {
-    await Model.editNote(req.body.image, req.params.id);
+    await Model.replaceImage(req.body.image,
+                         req.params.id);
+
     const notesArray = await Model.getAllNotes();
     res.render("main_page", { notes: notesArray});
-}); 
+});
 
 app.get("/style.css", function (req,res){
   res.sendFile( __dirname + "/style.css")

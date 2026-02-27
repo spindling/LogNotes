@@ -34,5 +34,10 @@ async function editNote(title, content, starred, image, timestamp, charcount, id
         [title, content, starred, image, timestamp, charcount, id]);
 }
 
-
-module.exports = { makeConnection, getAllNotes, deleteNote, addNote, editNote};
+async function replaceImage(image, id)
+{
+    await db.run("UPDATE Notes SET image=? WHERE rowid=?",
+        [image, id]);
+    
+}
+module.exports = { makeConnection, getAllNotes, deleteNote, addNote, editNote, replaceImage};
