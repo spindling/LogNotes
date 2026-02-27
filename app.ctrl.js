@@ -79,6 +79,13 @@ app.post("/replaceimage/:id", async function(req,res)
     res.render("main_page", { notes: notesArray});
 });
 
+app.get("/deleteimage/:id", async function(req,res)
+{
+    await Model.deleteImage(req.params.id);
+    const notesArray = await Model.getAllNotes();
+    res.render("main_page", { notes: notesArray});
+});
+
 app.get("/style.css", function (req,res){
   res.sendFile( __dirname + "/style.css")
 });

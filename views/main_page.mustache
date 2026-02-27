@@ -71,6 +71,7 @@
     </form>
     {{/replaceImage}}
 
+
     <h3>Existing Notes</h3>
     <table>
         <tr>
@@ -82,6 +83,9 @@
             <th>Timestamp</th>
             <th>Character Count</th>
             <th>Delete</th>
+            <th>Edit Content</th>
+            <th>Replace Image</th>
+            <th>Delete Image</th>
 
         </tr>
 
@@ -97,7 +101,7 @@
             <td><a href="/deletenote/{{rowid}}">Delete
             <td><a href="/editnoteform/{{rowid}}">Edit  
             <td><a href="/replaceimageform/{{rowid}}">Replace Image
-
+            <td><a href="/deleteimage/{{rowid}}">Delete Image
          </tr>
          {{/notes}}
     </table>

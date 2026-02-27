@@ -40,4 +40,12 @@ async function replaceImage(image, id)
         [image, id]);
     
 }
-module.exports = { makeConnection, getAllNotes, deleteNote, addNote, editNote, replaceImage};
+async function deleteImage(id)
+{
+    await db.run("UPDATE Notes SET image=null WHERE rowid=?",
+        [id]);
+    
+}
+
+
+module.exports = { makeConnection, getAllNotes, deleteNote, addNote, editNote, replaceImage, deleteImage};
