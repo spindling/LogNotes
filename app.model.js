@@ -54,8 +54,9 @@ async function resetDatabase()
 
 }
 
-async function sortDatabase(data)
+async function sortDatabase(sortby)
 {
-    
+    const results = await db.all("SELECT * FROM Notes ORDER BY charcount DESC");
+    return results;
 }
 module.exports = { makeConnection, getAllNotes, deleteNote, addNote, editNote, replaceImage, deleteImage, resetDatabase, sortDatabase};
