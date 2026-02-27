@@ -92,8 +92,7 @@ app.get("/resetdatabase", async function(req,res)
 
 app.get("/sort", async function(req,res)
 {
-    
-    const selection = req.params;
+    const selection = req.query.sort;
     res.send(selection);
     //const notesArray = await Model.getAllNotes();
     //res.render("main_page", { notes: notesArray });
