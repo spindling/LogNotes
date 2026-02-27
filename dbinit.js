@@ -13,7 +13,7 @@ async function dbinit()
 
   await db.run("INSERT INTO Notes VALUES (?,?,?,?,?,?)", ['Plants', 'Plants are nice!', 1, '', '2024-02-26', 12141 ] );
   await db.run("INSERT INTO Notes VALUES (?,?,?,?,?,?)", ['Animals', 'Animals are nice!', 0, '', '2024-02-23', 2424 ] );
-  await db.run("INSERT INTO Notes VALUES (?,?,?,?,?,?)", ['Mushrooms', 'Mushrooms are not nice!', 1, 'null', '2024-02-21', 15351 ] );
+  await db.run("INSERT INTO Notes VALUES (?,?,?,?,?,?)", ['Mushrooms', 'Mushrooms are not nice!', 1, '', '2024-02-21', 15351 ] );
 
 }
 
