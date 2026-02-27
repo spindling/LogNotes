@@ -22,16 +22,17 @@ async function deleteNote(id)
     await db.run("DELETE FROM Notes WHERE rowid=?", [id]);
 }
 
-async function addNote(data) 
+async function addNote(title, content, starred, image, timestamp, charcount) 
 {
     await db.run("INSERT INTO Notes VALUES (?,?,?,?,?,?)",
-        [data.title, data.content, data.starred, data.image, data.timestamp, data.charcount]);
+        [title, content, starred, image, timestamp, charcount]);
 }
 
-async function editNote(data, id) 
+async function editNote(title, content, starred, image, timestamp, charcount, id) 
 {
     await db.run("UPDATE Notes SET title=?, content=?, starred=?, image=?, timestamp=?, charcount=? WHERE rowid=?",
-        [data.title, data.content, data.starred, data.image, data.timestamp, data.charcount, id]);
+        [title, content, starred, image, timestamp, charcount, id]);
 }
+
 
 module.exports = { makeConnection, getAllNotes, deleteNote, addNote, editNote};

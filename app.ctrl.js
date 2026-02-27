@@ -36,17 +36,36 @@ app.get("/editnoteform/:id", async function(req,res)
 
 app.post("/addnote", async function(req,res)
 {
-    await Model.addNote(req.body);
+    await Model.addNote(req.body.title, 
+                         req.body.content,
+                         req.body.starred,
+                         req.body.image,
+                         req.body.timestamp,
+                         req.body.charcount);
     const notesArray = await Model.getAllNotes();
     res.render("main_page", { notes: notesArray });
 });
 
 app.post("/editnote/:id", async function(req,res)
 {
-    await Model.editNote(req.body, req.params.id);
+    await Model.editNote(req.body.title, 
+                         req.body.content,
+                         req.body.starred,
+                         req.body.image,
+                         req.body.timestamp,
+                         req.body.charcount,
+                         req.params.id);
+
     const notesArray = await Model.getAllNotes();
     res.render("main_page", { notes: notesArray});
 });
+
+app.post("/replaceimage/:id", async function(req,res)
+{
+    await Model.editNote(req.body.image, req.params.id);
+    const notesArray = await Model.getAllNotes();
+    res.render("main_page", { notes: notesArray});
+}); 
 
 app.get("/style.css", function (req,res){
   res.sendFile( __dirname + "/style.css")
