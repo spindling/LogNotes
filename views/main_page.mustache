@@ -67,11 +67,11 @@
       <input type="radio" id="sortascend" name="order" value="ASC" {{#sortascend}}checked{{/sortascend}}>
       <label for="order">Descending</label>
       <input type="radio" id="sortdescend" name="order" value="DESC" {{#sortdescend}}checked{{/sortdescend}}><br><br>
-      <input type="radio" id="titlesort" name="sortby" value="title">
+      <input type="radio" id="titlesort" name="sortby" value="title" {{#sorttitle}}checked{{/sorttitle}}>
       <label for="titlesort">Title</label><br>
-      <input type="radio" id="datesort" name="sortby" value="timestamp">
+      <input type="radio" id="datesort" name="sortby" value="timestamp" {{#sortdate}}checked{{/sortdate}}>
       <label for="datesort">Date Created</label><br>
-      <input type="radio" id="charcountsort" name="sortby" value="charcount">
+      <input type="radio" id="charcountsort" name="sortby" value="charcount" {{#sortcharcount}}checked{{/sortcharcount}}>
       <label for="charcountsort">Character Count</label><br>
       <input type="submit"/>
     </form>

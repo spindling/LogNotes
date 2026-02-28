@@ -96,13 +96,18 @@ app.get("/sort", async function(req,res)
     const order = req.query.order;
     let order_ascend = (order=="ASC") ? true: false;
     let order_descend= (order=="DESC") ? true: false;
-    
+    let sort_title = (sortby=="title") ? true: false;
+    let sort_date = (sortby=="timestamp") ? true: false;
+    let sort_charcount = (sortby=="charcount") ? true: false;
     
     const sortedNotes = await Model.sortDatabase(sortby, order);
     //res.send(req.query);
     res.render("main_page", { notes: sortedNotes, 
                               sortascend: order_ascend,
-                              sortdescend: order_descend
+                              sortdescend: order_descend,
+                              sorttitle: sort_title,
+                              sortdate: sort_date,
+                              sortcharcount: sort_charcount
                                  });
 });
 
