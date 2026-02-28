@@ -79,8 +79,8 @@
     <h4>Filter: </h4>
     <form action="/filter" method="get">
       <label for="filter">Starred</label>
-      <input type="checkbox" id="filterstarred" name="starred" {{#checked}}checked{{/checked}}><br>
-      <input type="submit"/>
+      <input type="checkbox" id="filterstarred" name="starred" onChange="this.form.submit()" {{#checked}}checked{{/checked}}><br>
+      <!--<input type="submit"/>-->
     </form>
 
     <p><a href="/resetdatabase">Delete all notes</a></p>
