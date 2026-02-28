@@ -94,16 +94,9 @@ app.get("/sort", async function(req,res)
 {   
     const sortby = req.query.sortby;
     const order = req.query.order;
-    let order_ascend = true;
-    let order_descend= false;
-    if (order=="DESC")
-    {
-         order_descend = true;
-    }
-    else
-    {
-        order_ascend = true;
-    }
+    let order_ascend = (order=="ASC") ? true: false;
+    let order_descend= (order=="DESC") ? true: false;
+    
     
     const sortedNotes = await Model.sortDatabase(sortby, order);
     //res.send(req.query);
