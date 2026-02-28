@@ -41,19 +41,20 @@ app.post("/addnote", async function(req,res)
     const content = req.body.content;
     const starred = req.body.starred;
     const timestamp = req.body.timestamp;
+    const image = req.body.image;
+    const charcount = req.body.charcount;
 
     const errors = Model.checkNoteErrors(title, content);
-    //set error messages
-      
    
-    //if errors are not present, add note 
     let errorsPresent = (errors.length == 0) ? false: true;
     if (!errorsPresent)
     {
         await Model.addNote(title,
                         content,
                         starred,
-                        timestamp);
+                        image,
+                        timestamp,
+                        charcount);
     }
     
     const notesArray = await Model.getAllNotes();
@@ -66,14 +67,21 @@ app.post("/editnote/:id", async function(req,res)
     const content = req.body.content;
     const starred = req.body.starred;
 
+     const errors = Model.checkNoteErrors(title, content);
+    let errorsPresent = (errors.length == 0) ? false: true;
+    if (!errorsPresent)
+    {
     await Model.editNote(title, 
                          content,
                          starred,
                          req.params.id);
+    }
+    
 
     const notesArray = await Model.getAllNotes();
-    res.render("main_page", { notes: notesArray});
+    res.render("main_page", { notes: notesArray, errors: errors, errorbox: errorsPresent});
 });
+
 
 app.get("/replaceimageform/:id", async function(req,res)
 {
