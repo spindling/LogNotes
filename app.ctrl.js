@@ -82,7 +82,7 @@ app.get("/deleteimage/:id", async function(req,res)
     const notesArray = await Model.getAllNotes();
     res.render("main_page", { notes: notesArray});
 });
-
+ 
 app.get("/resetdatabase", async function(req,res)
 {
     await Model.resetDatabase();
@@ -99,10 +99,18 @@ app.get("/sort", async function(req,res)
 });
 
 app.get("/filter", async function(req,res)
-{
-    const filterNotes = await Model.sortDatabase(req.query.filterby)
-     res.render("main_page", { notes: filterNotes });
-})
+{   let checked = false;
+    if (req.query.starred=="on")
+        {  checked = true};
+    filterNotes = await Model.filterDatabase()
+    
+    //res.send(req.query);
+    res.render("main_page", { notes: filterNotes, checked: checked
+
+     });
+})//
+
+
 
 app.get("/style.css", function (req,res){
   res.sendFile( __dirname + "/style.css")

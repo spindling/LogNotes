@@ -79,7 +79,7 @@
     <h4>Filter: </h4>
     <form action="/filter" method="get">
       <label for="filter">Starred</label>
-      <input type="checkbox" id="filterstarred" name="filterby"><br>
+      <input type="checkbox" id="filterstarred" name="starred" {{#checked}}checked{{/checked}}><br>
       <input type="submit"/>
     </form>
 
