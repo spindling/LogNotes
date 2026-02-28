@@ -30,7 +30,7 @@ async function addNote(title, content, starred, image, timestamp, charcount)
 
 async function editNote(title, content, starred, id) 
 {
-    await db.run("UPDATE Notes SET title=?, content=?, starred=?, image=?, timestamp=?, charcount=? WHERE rowid=?",
+    await db.run("UPDATE Notes SET title=?, content=?, starred=? WHERE rowid=?",
         [title, content, starred, id]);
 }
 
