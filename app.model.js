@@ -68,4 +68,17 @@ async function filterDatabase(checked)
     return results;
 }
 
-module.exports = { makeConnection, getAllNotes, deleteNote, addNote, editNote, replaceImage, deleteImage, resetDatabase, sortDatabase,filterDatabase};
+function checkNoteErrors(title, content)
+{
+    const errors = [];
+     if (title.length > 30){
+        errors.push({message: "Title must be between 1-30 characters in length."})
+    }
+    if (content.length > 200){
+        errors.push({message: "Content must be between 1-200 characters"});
+    }
+    return errors;
+
+}
+
+module.exports = { makeConnection, getAllNotes, deleteNote, addNote, editNote, replaceImage, deleteImage, resetDatabase, sortDatabase,filterDatabase, checkNoteErrors};

@@ -42,28 +42,33 @@ app.post("/addnote", async function(req,res)
     const starred = req.body.starred;
     const timestamp = req.body.timestamp;
 
-    const errors = [];  
-    if (title.length > 30){
-        errors.push({message: "Title must be between 1-30 characters in length."})
-    }
-    if (content.length > 200){
-        errors.push({message: "Content must be between 1-200 characters"});
-    }
-
+    const errors = Model.checkNoteErrors(title, content);
+    //set error messages
+      
+   
+    //if errors are not present, add note 
     let errorsPresent = (errors.length == 0) ? false: true;
-    await Model.addNote(title,
+    if (!errorsPresent)
+    {
+        await Model.addNote(title,
                         content,
                         starred,
                         timestamp);
+    }
+    
     const notesArray = await Model.getAllNotes();
     res.render("main_page", { notes: notesArray, errors: errors, errorbox: errorsPresent });
 });
 
 app.post("/editnote/:id", async function(req,res)
 {
-    await Model.editNote(req.body.title, 
-                         req.body.content,
-                         req.body.starred,
+    const title = req.body.title;
+    const content = req.body.content;
+    const starred = req.body.starred;
+
+    await Model.editNote(title, 
+                         content,
+                         starred,
                          req.params.id);
 
     const notesArray = await Model.getAllNotes();
