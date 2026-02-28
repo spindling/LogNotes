@@ -15,21 +15,32 @@
     {{#addNote}}
     <form action="/addnote" method="post">
         <label for="title">Title</label>
-        <input type="text" name="title" /><br>
+        <input type="text" name="title" id="newtitle"/><br>
 
         <label for="content">Content</label>
-        <input type="text" name="content" /><br>
+        <input type="text" name="content" id="newcontent"/><br>
         
         <label for="starred">Starred</label>
-        <input type="checkbox" name="starred" /><br>
+        <input type="checkbox" name="starred" id="newstarred" /><br>
         
         <label for="image">Image</label>
-        <input type="file" accept="image/* "name="image" /><br>
+        <input type="file" accept="image/* "name="image" id="newimage"/><br>
 
         <input type="submit"/>
     </form>
     {{/addNote}}
+    
+    {{#errorbox}}
+    <h3>ERRORS: </h3>
+    <ul>
+    {{#errors}}
 
+    <li>{{message}}</li>
+    
+    {{/errors}}
+    </ul>
+    {{/errorbox}}
+    
     {{#editNote}}
     <h2>Edit Note</h2>
     <form action="/editnote/{{formdata.rowid}}" method="post">
@@ -61,12 +72,15 @@
     <h2>Existing Notes</h2>
     <h3>Sort Notes</h3>
     
-    <h4>Sort by:</h4>
+
+    <h4>Sort</h4>
     <form action="/sort" method="get">
+      <h5>Sort order: </h5>
       <label for="order">Ascending</label>
       <input type="radio" id="sortascend" name="order" value="ASC" {{#sortascend}}checked{{/sortascend}}>
       <label for="order">Descending</label>
       <input type="radio" id="sortdescend" name="order" value="DESC" {{#sortdescend}}checked{{/sortdescend}}><br><br>
+      <h5>Sort by:</h5>
       <input type="radio" id="titlesort" name="sortby" value="title" {{#sorttitle}}checked{{/sorttitle}}>
       <label for="titlesort">Title</label><br>
       <input type="radio" id="datesort" name="sortby" value="timestamp" {{#sortdate}}checked{{/sortdate}}>

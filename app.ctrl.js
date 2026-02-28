@@ -20,6 +20,7 @@ app.get("/deletenote/:id", async function(req,res)
 
 app.get("/addnoteform", async function(req,res)
 {
+
     const notesArray = await Model.getAllNotes();
     res.render("main_page", { notes: notesArray, addNote: true });
 });
@@ -36,14 +37,26 @@ app.get("/editnoteform/:id", async function(req,res)
 
 app.post("/addnote", async function(req,res)
 {
-    await Model.addNote(req.body.title, 
-                         req.body.content,
-                         req.body.starred,
-                         req.body.image,
-                         req.body.timestamp,
-                         req.body.charcount);
+    const title = req.body.title;
+    const content = req.body.content;
+    const starred = req.body.starred;
+    const timestamp = req.body.timestamp;
+
+    const errors = [];  
+    if (title.length > 30){
+        errors.push({message: "Title must be between 1-30 characters in length."})
+    }
+    if (content.length > 200){
+        errors.push({message: "Content must be between 1-200 characters"});
+    }
+
+    let errorsPresent = (errors.length == 0) ? false: true;
+    await Model.addNote(title,
+                        content,
+                        starred,
+                        timestamp);
     const notesArray = await Model.getAllNotes();
-    res.render("main_page", { notes: notesArray });
+    res.render("main_page", { notes: notesArray, errors: errors, errorbox: errorsPresent });
 });
 
 app.post("/editnote/:id", async function(req,res)
@@ -94,6 +107,7 @@ app.get("/sort", async function(req,res)
 {   
     const sortby = req.query.sortby;
     const order = req.query.order;
+    //Allow for sort options to remain checked on radio buttons after submit 
     let order_ascend = (order=="ASC") ? true: false;
     let order_descend= (order=="DESC") ? true: false;
     let sort_title = (sortby=="title") ? true: false;
