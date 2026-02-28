@@ -91,11 +91,26 @@ app.get("/resetdatabase", async function(req,res)
 });
 
 app.get("/sort", async function(req,res)
-{
+{   
+    const sortby = req.query.sortby;
+    const order = req.query.order;
+    let order_ascend = true;
+    let order_descend= false;
+    if (order=="DESC")
+    {
+         order_descend = true;
+    }
+    else
+    {
+        order_ascend = true;
+    }
     
-    const sortedNotes = await Model.sortDatabase(req.query.sortby, req.query.order);
+    const sortedNotes = await Model.sortDatabase(sortby, order);
     //res.send(req.query);
-    res.render("main_page", { notes: sortedNotes });
+    res.render("main_page", { notes: sortedNotes, 
+                              sortascend: order_ascend,
+                              sortdescend: order_descend
+                                 });
 });
 
 app.get("/filter", async function(req,res)
@@ -116,7 +131,6 @@ app.get("/filter", async function(req,res)
 
      });
 })//
-
 
 
 app.get("/style.css", function (req,res){

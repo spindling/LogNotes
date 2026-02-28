@@ -64,9 +64,9 @@
     <h4>Sort by:</h4>
     <form action="/sort" method="get">
       <label for="order">Ascending</label>
-      <input type="radio" id="sortascend" name="order" value="ASC">
+      <input type="radio" id="sortascend" name="order" value="ASC" {{#sortascend}}checked{{/sortascend}}>
       <label for="order">Descending</label>
-      <input type="radio" id="sortdescend" name="order" value="DESC"><br><br>
+      <input type="radio" id="sortdescend" name="order" value="DESC" {{#sortdescend}}checked{{/sortdescend}}><br><br>
       <input type="radio" id="titlesort" name="sortby" value="title">
       <label for="titlesort">Title</label><br>
       <input type="radio" id="datesort" name="sortby" value="timestamp">
