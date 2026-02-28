@@ -61,11 +61,11 @@ async function sortDatabase(sortby, order)
     return results;
 }
 
-async function sortDatabase(filterby)
+async function filterDatabase(checked)
 {
-    const select_statement = "SELECT rowid, * FROM Notes WHERE starred=1";
-    const results = await db.all(select_statement);
+   // const select_statement = ""+ checked;
+    const results = await db.all("SELECT rowid, * FROM Notes  WHERE starred=?",[checked]);
     return results;
 }
 
-module.exports = { makeConnection, getAllNotes, deleteNote, addNote, editNote, replaceImage, deleteImage, resetDatabase, sortDatabase};
+module.exports = { makeConnection, getAllNotes, deleteNote, addNote, editNote, replaceImage, deleteImage, resetDatabase, sortDatabase,filterDatabase};

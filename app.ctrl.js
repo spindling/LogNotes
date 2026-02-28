@@ -99,13 +99,20 @@ app.get("/sort", async function(req,res)
 });
 
 app.get("/filter", async function(req,res)
-{   let checked = false;
+{   
+    let checked = false;
+    let notesArray = null;
     if (req.query.starred=="on")
-        {  checked = true};
-    filterNotes = await Model.filterDatabase()
+        {  checked = true
+            notesArray = await Model.filterDatabase(checked);
+        }
+    else
+        {
+            notesArray = await Model.getAllNotes();
+        };
     
     //res.send(req.query);
-    res.render("main_page", { notes: filterNotes, checked: checked
+    res.render("main_page", { notes: notesArray, checked: checked
 
      });
 })//
