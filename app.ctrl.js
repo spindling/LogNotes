@@ -98,6 +98,12 @@ app.get("/sort", async function(req,res)
     res.render("main_page", { notes: sortedNotes });
 });
 
+app.get("/filter", async function(req,res)
+{
+    const filterNotes = await Model.sortDatabase(req.query.filterby)
+     res.render("main_page", { notes: filterNotes });
+})
+
 app.get("/style.css", function (req,res){
   res.sendFile( __dirname + "/style.css")
 });

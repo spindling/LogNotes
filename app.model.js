@@ -61,4 +61,11 @@ async function sortDatabase(sortby, order)
     return results;
 }
 
+async function sortDatabase(filterby)
+{
+    const select_statement = "SELECT rowid, * FROM Notes WHERE starred=1";
+    const results = await db.all(select_statement);
+    return results;
+}
+
 module.exports = { makeConnection, getAllNotes, deleteNote, addNote, editNote, replaceImage, deleteImage, resetDatabase, sortDatabase};
