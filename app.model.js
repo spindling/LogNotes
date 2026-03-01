@@ -83,7 +83,7 @@ function checkNoteErrors(title, content)
 
 async function loadImage(rowid)
 {
-    const result = await db.run("SELECT image FROM Notes WHERE rowid=?",[rowid]);
+    const result = await db.get("SELECT image FROM Notes WHERE rowid=?",[rowid]);
     return result;
 }
 
