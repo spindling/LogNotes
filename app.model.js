@@ -71,10 +71,10 @@ async function filterDatabase(checked)
 function checkNoteErrors(title, content)
 {
     const errors = [];
-     if (title.length > 30){
+     if (title.length > 30 || title.length < 1){
         errors.push({message: "Title must be between 1-30 characters in length."})
     }
-    if (content.length > 200){
+    if (content.length > 200 || content.length < 1){
         errors.push({message: "Content must be between 1-200 characters"});
     }
     return errors;
