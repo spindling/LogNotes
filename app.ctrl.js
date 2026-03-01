@@ -40,7 +40,8 @@ app.post("/addnote", async function(req,res)
     const title = req.body.title;
     const content = req.body.content;
     const starred = (req.body.starred=="on") ? 1:0;
-    const timestamp = req.body.timestamp;
+    const date = new Date();
+    const timestamp = date.toLocaleDateString("sv") + " " + date.toLocaleTimeString("sv");
     const image = req.body.image;
     const charcount = req.body.charcount;
 
