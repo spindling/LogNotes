@@ -8,7 +8,7 @@
   </head>
   <body>
     
-    <h1>LogNotes</h1>
+    <h1><a href="/">LogNotes</a></h1>
 
     <h2>New Note </h2>
     <p><a href="/addnoteform">Create a new note</a><p>
@@ -42,6 +42,7 @@
     {{/errorbox}}
     
     {{#editNote}}
+
     <h2>Edit Note</h2>
     <form action="/editnote/{{formdata.rowid}}" method="post">
         <label for="title">Title</label>
@@ -120,7 +121,7 @@
             <td>{{ title }}</td>
             <td>{{ content }}</td>
             <td>{{ starred }}</td>
-            <td>{{ image }}</td>
+            <td><img src="image/{{rowid}}"><td>
             <td>{{ timestamp }}</td>
             <td>{{ charcount }}</td>
             <td><a href="/deletenote/{{rowid}}">Delete
