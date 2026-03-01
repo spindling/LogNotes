@@ -43,7 +43,7 @@ app.post("/addnote", async function(req,res)
     const date = new Date();
     const timestamp = date.toLocaleDateString("sv") + " " + date.toLocaleTimeString("sv");
     const image = req.body.image;
-    const charcount = req.body.charcount;
+    const charcount = content.length;
 
     const errors = Model.checkNoteErrors(title, content);
    
@@ -67,14 +67,16 @@ app.post("/editnote/:id", async function(req,res)
     const title = req.body.title;
     const content = req.body.content;
     const starred = (req.body.starred=="on") ? 1:0;
+    const charcount = content.length;
 
-     const errors = Model.checkNoteErrors(title, content);
+    const errors = Model.checkNoteErrors(title, content);
     let errorsPresent = (errors.length == 0) ? false: true;
     if (!errorsPresent)
     {
     await Model.editNote(title, 
                          content,
                          starred,
+                         charcount,
                          req.params.id);
     }
     

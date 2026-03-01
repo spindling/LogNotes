@@ -28,10 +28,10 @@ async function addNote(title, content, starred, image, timestamp, charcount)
         [title, content, starred, image, timestamp, charcount]);
 }
 
-async function editNote(title, content, starred, id) 
+async function editNote(title, content, starred, charcount, id) 
 {
-    await db.run("UPDATE Notes SET title=?, content=?, starred=? WHERE rowid=?",
-        [title, content, starred, id]);
+    await db.run("UPDATE Notes SET title=?, content=?, starred=?, charcount=? WHERE rowid=?",
+        [title, content, starred, charcount, id]);
 }
 
 async function replaceImage(image, id)
