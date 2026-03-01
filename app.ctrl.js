@@ -1,6 +1,7 @@
 const express = require ("express");
 const app = express();
 const mustacheExpress = require("mustache-express");
+const fs = require("fs").promises;
 
 const Model = require("./app.model.js");
 
@@ -88,7 +89,7 @@ app.post("/editnote/:id", async function(req,res)
 
 app.get("/replaceimageform/:id", async function(req,res)
 {
- 
+    
     const notesArray = await Model.getAllNotes();
 
     res.render("main_page", { notes: notesArray, 
@@ -97,10 +98,10 @@ app.get("/replaceimageform/:id", async function(req,res)
 }); 
 
 app.post("/replaceimage/:id", async function(req,res)
-{
+{   
     await Model.replaceImage(req.body.image,
                          req.params.id);
-
+    
     const notesArray = await Model.getAllNotes();
     res.render("main_page", { notes: notesArray});
 });

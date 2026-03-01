@@ -78,10 +78,10 @@ function checkNoteErrors(title, content, image)
         errors.push({message: "Content must be between 1-200 characters"});
     }
 
-    if (image.length == 0)
-    {
-        errors.push({message: "Please attach an image!"});
-    }
+    //if (image.length == 0)
+    //{
+    //    errors.push({message: "Please attach an image!"});
+    //}
     return errors;
 
 }
