@@ -137,6 +137,7 @@ app.get("/sort", async function(req,res)
     const sortedNotes = await Model.sortDatabase(sortby, order);
     //res.send(req.query);
     res.render("main_page", { notes: sortedNotes, 
+                              addNote: true,
                               sortascend: order_ascend,
                               sortdescend: order_descend,
                               sorttitle: sort_title,
@@ -179,7 +180,7 @@ app.get("/style.css", function (req,res){
 app.get("/", async function(req, res) {
 
     const notesArray = await Model.getAllNotes();
-    res.render("main_page", { notes: notesArray });
+    res.render("main_page", { notes: notesArray, addNote: true });
 });
 
 async function startServer()
