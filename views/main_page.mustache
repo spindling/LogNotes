@@ -56,7 +56,7 @@
     <h2>Replace Image</h2>
     <form action="/replaceimage/{{formdata.rowid}}" method="post" enctype="multipart/form-data">
         <label for="image">Image</label>
-        <input type="file" accept="image/* "name="image" value="{{formdata.image}}"/><br>
+        <input type="file" accept="image/* "name="image" value="{{formdata.image}}" required/><br>
         <input type="submit"/>
 
     </form>
@@ -87,11 +87,11 @@
     <form action="/sort" method="get">
       <h5>Sort order: </h5>
       <label for="order">Ascending</label>
-      <input type="radio" id="sortascend" name="order" value="ASC" {{#sortascend}}checked{{/sortascend}}>
+      <input type="radio" id="sortascend" name="order" value="ASC" {{#sortascend}}checked{{/sortascend}} required>
       <label for="order">Descending</label>
       <input type="radio" id="sortdescend" name="order" value="DESC" {{#sortdescend}}checked{{/sortdescend}}><br><br>
       <h5>Sort by:</h5>
-      <input type="radio" id="titlesort" name="sortby" value="title" {{#sorttitle}}checked{{/sorttitle}}>
+      <input type="radio" id="titlesort" name="sortby" value="title" {{#sorttitle}}checked{{/sorttitle}} required>
       <label for="titlesort">Title</label><br>
       <input type="radio" id="datesort" name="sortby" value="timestamp" {{#sortdate}}checked{{/sortdate}}>
       <label for="datesort">Date Created</label><br>
