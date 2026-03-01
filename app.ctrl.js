@@ -99,9 +99,10 @@ app.get("/replaceimageform/:id", async function(req,res)
                                 replaceImage: true });
 }); 
 
-app.post("/replaceimage/:id", async function(req,res)
-{   
-    await Model.replaceImage(req.body.image,
+app.post("/replaceimage/:id", upload.single('image'), async function(req,res)
+{       
+    const image = req.file.buffer;
+    await Model.replaceImage(image,
                          req.params.id);
     
     const notesArray = await Model.getAllNotes();

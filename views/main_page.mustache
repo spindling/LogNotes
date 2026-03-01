@@ -61,7 +61,7 @@
 
     {{#replaceImage}}
     <h2>Replace Image</h2>
-    <form action="/replaceimage/{{formdata.rowid}}" method="post">
+    <form action="/replaceimage/{{formdata.rowid}}" method="post" enctype="multipart/form-data">
         <label for="image">Image</label>
         <input type="file" accept="image/* "name="image" value="{{formdata.image}}"/><br>
         <input type="submit"/>
