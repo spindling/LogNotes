@@ -160,6 +160,12 @@ app.get("/filter", async function(req,res)
      });
 })//
 
+app.get("/image/:id", async function(req,res)
+{
+    const image = await Model.loadImage(req.params.id);
+    res.send(image);
+    
+});
 
 app.get("/style.css", function (req,res){
   res.sendFile( __dirname + "/style.css")
