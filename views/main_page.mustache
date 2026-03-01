@@ -3,13 +3,17 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
     <link rel="stylesheet" href="style.css">
     <title>LogNotes notetaking application</title>
   </head>
   <body>
-    
+    <div class="container">
     <h1><a href="/">LogNotes</a></h1>
-
+    
+    <div class="row">
+    <div class="col">
     <h2>New Note </h2>
     <p><a href="/addnoteform">Create a new note</a><p>
     {{#addNote}}
@@ -29,18 +33,7 @@
         <input type="submit"/>
     </form>
     {{/addNote}}
-    
-    {{#errorbox}}
-    <h3>ERRORS: </h3>
-    <ul>
-    {{#errors}}
-
-    <li>{{message}}</li>
-    
-    {{/errors}}
-    </ul>
-    {{/errorbox}}
-    
+  
     {{#editNote}}
 
     <h2>Edit Note</h2>
@@ -68,7 +61,23 @@
 
     </form>
     {{/replaceImage}}
+    </div>
+
+    <div class="col">
+    {{#errorbox}}
+    <h3>ERRORS: </h3>
+    <ul>
+    {{#errors}}
+
+    <li>{{message}}</li>
     
+    {{/errors}}
+    </ul>
+    {{/errorbox}}
+    
+    </div>
+    </div>
+
     
     <h2>Existing Notes</h2>
     <h3>Sort Notes</h3>
@@ -132,5 +141,8 @@
          {{/notes}}
 
     </table>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+
   </body>
 </html>
