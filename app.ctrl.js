@@ -65,7 +65,7 @@ app.post("/editnote/:id", async function(req,res)
 {
     const title = req.body.title;
     const content = req.body.content;
-    const starred = req.body.starred;
+    const starred = (req.body.starred=="on") ? 1:0;
 
      const errors = Model.checkNoteErrors(title, content);
     let errorsPresent = (errors.length == 0) ? false: true;
