@@ -45,7 +45,7 @@ app.post("/addnote", upload.single('image'), async function(req,res)
     const starred = (req.body.starred=="on") ? 1:0;
     const date = new Date();
     const timestamp = date.toLocaleDateString("sv") + " " + date.toLocaleTimeString("sv");
-    const image = req.file.buffer;
+    const image = (req.file != undefined) ? req.file.buffer: null;
     const charcount = content.length;
 
     const errors = Model.checkNoteErrors(title, content, image);
