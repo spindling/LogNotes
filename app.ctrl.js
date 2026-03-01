@@ -45,7 +45,7 @@ app.post("/addnote", async function(req,res)
     const image = req.body.image;
     const charcount = content.length;
 
-    const errors = Model.checkNoteErrors(title, content);
+    const errors = Model.checkNoteErrors(title, content, image);
    
     let errorsPresent = (errors.length == 0) ? false: true;
     if (!errorsPresent)

@@ -68,7 +68,7 @@ async function filterDatabase(checked)
     return results;
 }
 
-function checkNoteErrors(title, content)
+function checkNoteErrors(title, content, image)
 {
     const errors = [];
      if (title.length > 30 || title.length < 1){
@@ -76,6 +76,11 @@ function checkNoteErrors(title, content)
     }
     if (content.length > 200 || content.length < 1){
         errors.push({message: "Content must be between 1-200 characters"});
+    }
+
+    if (image.length == 0)
+    {
+        errors.push({message: "Please attach an image!"});
     }
     return errors;
 
