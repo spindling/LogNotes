@@ -1,6 +1,6 @@
 const sqlite3 = require("sqlite3");
 const sqlite = require("sqlite");
-const fs = require("fs");
+const fs = require("fs").promises;
 
 async function dbinit()
 {
@@ -9,8 +9,8 @@ async function dbinit()
     driver: sqlite3.Database
   });
 
-  //read in images
-  const plantsImage = fs.readFile("/images/plants.jpg");
+ 
+  const plantsImage = await fs.readFile("./images/plants.jpg");
 
   await db.exec("DROP TABLE IF EXISTS Notes");
   await db.exec("CREATE TABLE Notes (title TEXT, content TEXT, starred INTEGER, image BLOB, timestamp TEXT, charcount INTEGER)");
