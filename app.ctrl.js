@@ -1,9 +1,10 @@
 const express = require ("express");
 const app = express();
 const mustacheExpress = require("mustache-express");
-const fs = require("fs").promises;
-
+const multer = require('multer'); //for multi-part form data reading (image files)
 const Model = require("./app.model.js");
+
+const images = multer({ dest: 'images/' });
 
 app.engine("mustache", mustacheExpress());
 app.set("view engine", "mustache");
@@ -36,14 +37,14 @@ app.get("/editnoteform/:id", async function(req,res)
                                 editNote: true });
 });
 
-app.post("/addnote", async function(req,res)
+app.post("/addnote", images.single('image'), async function(req,res)
 {
     const title = req.body.title;
     const content = req.body.content;
     const starred = (req.body.starred=="on") ? 1:0;
     const date = new Date();
     const timestamp = date.toLocaleDateString("sv") + " " + date.toLocaleTimeString("sv");
-    const image = req.body.image;
+    const image = req.file;
     const charcount = content.length;
 
     const errors = Model.checkNoteErrors(title, content, image);

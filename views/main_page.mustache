@@ -13,7 +13,7 @@
     <h2>New Note </h2>
     <p><a href="/addnoteform">Create a new note</a><p>
     {{#addNote}}
-    <form action="/addnote" method="post">
+    <form action="/addnote" method="post" enctype="multipart/form-data">
         <label for="title">Title</label>
         <input type="text" name="title" id="newtitle"/><br>
 
