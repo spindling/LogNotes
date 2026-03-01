@@ -87,4 +87,4 @@ async function loadImage(rowid)
     return result;
 }
 
-module.exports = { makeConnection, getAllNotes, deleteNote, addNote, editNote, replaceImage, deleteImage, resetDatabase, sortDatabase,filterDatabase, checkNoteErrors};
+module.exports = { makeConnection, getAllNotes, deleteNote, addNote, editNote, replaceImage, deleteImage, resetDatabase, sortDatabase,filterDatabase, checkNoteErrors, loadImage};

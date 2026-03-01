@@ -162,8 +162,9 @@ app.get("/filter", async function(req,res)
 
 app.get("/image/:id", async function(req,res)
 {
-    const image = await Model.loadImage(req.params.id);
-    res.send(image);
+    const note = await Model.loadImage(req.params.id);
+    res.type('image/jpeg');
+    res.send(note.image);
     
 });
 
