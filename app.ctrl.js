@@ -62,7 +62,7 @@ app.post("/addnote", upload.single('image'), async function(req,res)
     }
     
     const notesArray = await Model.getAllNotes();
-    res.render("main_page", { notes: notesArray, errors: errors, errorbox: errorsPresent });
+    res.render("main_page", { notes: notesArray, errors: errors, errorbox: errorsPresent, addNote: true });
 });
 
 app.post("/editnote/:id", async function(req,res)
