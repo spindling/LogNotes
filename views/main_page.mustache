@@ -13,15 +13,15 @@
 
 <body>
   <div class="container">
-    <div class="row">
+    <div class="row" id="mainheading">
       <div class="col">
         <h1>
           <a href="/">LogNotes</a>
         </h1>
       </div>
     </div>
-    <div class="row">
-      <div class="col">
+    <div class="row" id="noteeditor">
+      <div class="col" id="forms">
         <div class="row">
           <div class="col">
             <h2>Note Editor</h2>
@@ -71,7 +71,7 @@
         </form>
         {{/replaceImage}}
       </div>
-      <div class="col">
+      <div class="col" id="errorbox">
         {{#errorbox}}
         <h3>ERRORS:</h3>
         <ul>
@@ -82,93 +82,86 @@
         {{/errorbox}}
       </div>
     </div>
-
     <div class="row">
-      <div class="col">
+      <div class="col" id="">
         <div class="row">
           <div class="col">
             <h2>Notes</h2>
           </div>
         </div>
+        <div class="row" id="notessection">
+          <div class="col" id="notelist">
 
-
-
-        <div class="row">
-          <div class="col">
             {{#notes}}
-
-            <div class="col">
-              <div class="row">
-                <div class="col">
-                  <h3>Title: {{title}}</h3>
-                  <p>{{content}}</p>
+            <div class="row" id="noteper">
+              <div class="col" id="notecontent">
+                <h3>Title: {{title}}</h3>
+                <p>{{content}}</p>
+              </div>
+              <div class="col" id="notemeta">
+                <div class="row">
+                  <div class="col">
+                    {{#starred}}
+                    <i class="bi bi-star-fill"></i>
+                    {{/starred}}
+                    {{^starred}}
+                    <i class="bi bi-star"></i>
+                    {{/starred}}
+                  </div>
                 </div>
-                <div class="col">
-                  <div class="row">
-                    <div class="col">
-                      {{#starred}}
-                      <i class="bi bi-star-fill"></i>
-                      {{/starred}}
-                      {{^starred}}
-                      <i class="bi bi-star"></i>
-                      {{/starred}}
-                    </div>
+                <div class="row">
+                  <div class="col">
+                    <p>
+                      Date created:
+                      <br>
+                      {{timestamp}}
+                    </p>
                   </div>
-                  <div class="row">
-                    <div class="col">
-                      <p>
-                        Date created:
-                        <br>
-                        {{timestamp}}
-                      </p>
-                    </div>
-                  </div>
-                  <div class="row">
-                    <div class="col">
-                      <p>{{charcount}} characters</p>
-                    </div>
+                </div>
+                <div class="row">
+                  <div class="col">
+                    <p>{{charcount}} characters</p>
                   </div>
                 </div>
               </div>
-              <div class="col">
+
+              <div class="col" id="noteimage">
                 <img src="/image/{{rowid}}">
               </div>
             </div>
+            {{/notes}}
           </div>
-          {{/notes}}
-          <br>
-          <div class="col">
-            <div class="row">
-              <div class="col">
-                <h3>Sort Notes</h3>
-                <form action="/sort" method="get">
-                  <h5>Sort order:</h5>
-                  <label for="order">Ascending</label>
-                  <input type="radio" id="sortascend" name="order" value="ASC" {{#sortascend}} checked {{/sortascend}}
-                    required>
-                  <label for="order">Descending</label>
-                  <input type="radio" id="sortdescend" name="order" value="DESC" {{#sortdescend}} checked
-                    {{/sortdescend}}>
-                  <br>
-                  <br>
-                  <h5>Sort by:</h5>
-                  <input type="radio" id="titlesort" name="sortby" value="title" {{#sorttitle}} checked {{/sorttitle}}
-                    required>
-                  <label for="titlesort">Title</label>
-                  <br>
-                  <input type="radio" id="datesort" name="sortby" value="timestamp" {{#sortdate}} checked {{/sortdate}}>
-                  <label for="datesort">Date Created</label>
-                  <br>
-                  <input type="radio" id="charcountsort" name="sortby" value="charcount" {{#sortcharcount}} checked
-                    {{/sortcharcount}}>
-                  <label for="charcountsort">Character Count</label>
-                  <br>
-                  <input type="submit" />
-                </form>
-              </div>
+
+          <div class="col" id="filtersortoptions">
+            <div class="row" id="sortoptions">
+              <h3>Sort Notes</h3>
+              <form action="/sort" method="get">
+                <h5>Sort order:</h5>
+                <label for="order">Ascending</label>
+                <input type="radio" id="sortascend" name="order" value="ASC" {{#sortascend}} checked {{/sortascend}}
+                  required>
+                <label for="order">Descending</label>
+                <input type="radio" id="sortdescend" name="order" value="DESC" {{#sortdescend}} checked
+                  {{/sortdescend}}>
+                <br>
+                <br>
+                <h5>Sort by:</h5>
+                <input type="radio" id="titlesort" name="sortby" value="title" {{#sorttitle}} checked {{/sorttitle}}
+                  required>
+                <label for="titlesort">Title</label>
+                <br>
+                <input type="radio" id="datesort" name="sortby" value="timestamp" {{#sortdate}} checked {{/sortdate}}>
+                <label for="datesort">Date Created</label>
+                <br>
+                <input type="radio" id="charcountsort" name="sortby" value="charcount" {{#sortcharcount}} checked
+                  {{/sortcharcount}}>
+                <label for="charcountsort">Character Count</label>
+                <br>
+                <input type="submit" />
+              </form>
             </div>
 
-            <div class="row">
+            <div class="row" id="sortoptions">
               <div class="col">
                 <h4>Filter:</h4>
                 <form action="/filter" method="get">
@@ -180,55 +173,19 @@
                 </form>
               </div>
             </div>
-            <div class="row">
+            <div class="row" id="resetoption">
               <div class="col">
                 <p>
                   <a href="/resetdatabase">Delete all notes</a>
                 </p>
               </div>
             </div>
-
           </div>
-
         </div>
       </div>
-      <!--
-    <table>
-        <tr>
-            <th>Row ID</th>
-            <th>Title</th>
-            <th>Content</th>
-            <th>Starred</th>
-            <th>Image</th>
-            <th>Timestamp</th>
-            <th>Character Count</th>
-            <th>Delete</th>
-            <th>Edit Content</th>
-            <th>Replace Image</th>
-            <th>Delete Image</th>
-
-        </tr>
-
-        {{#notes}}
-        <tr>
-            <td>{{ rowid }}</td>
-            <td>{{ title }}</td>
-            <td>{{ content }}</td>
-            <td>{{ starred }}</td>
-            <td><img src="/image/{{rowid}}"></td>
-            <td>{{ timestamp }}</td>
-            <td>{{ charcount }}</td>
-            <td><a href="/deletenote/{{rowid}}">Delete
-            <td><a href="/editnoteform/{{rowid}}">Edit  
-            <td><a href="/replaceimageform/{{rowid}}">Replace Image
-            <td><a href="/deleteimage/{{rowid}}">Delete Image
-         </tr>
-         {{/notes}}
-
-    </table>
--->
     </div>
   </div>
+
 
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
