@@ -21,7 +21,7 @@
       </div>
     </div>
     <div class="row" id="noteeditor">
-      <div class="col" id="forms">
+      <div class="col-sm-3" id="forms">
         <div class="row">
           <div class="col">
             <h2>Note Editor</h2>
@@ -30,21 +30,25 @@
         <button type="button"><a href="/addnoteform">Create a new note</a></button>
 
         {{#addNote}}
+
         <form action="/addnote" method="post" enctype="multipart/form-data">
-          <label for="title">Title</label>
-          <input type="text" name="title" id="newtitle" />
-          <br>
-          <label for="content">Content</label>
-          <input type="text" name="content" id="newcontent" />
-          <br>
-          <label for="starred">Starred</label>
-          <input type="checkbox" name="starred" id="newstarred" />
-          <br>
-          <label for="image">Image</label>
-          <input type="file" accept="image/* " name="image" id="newimage" />
-          <br>
-          <input type="submit" />
+          <div class="form-group">
+            <label for="title">Title</label>
+            <input type="text" name="title" id="newtitle" class="form-control" />
+            <br>
+            <label for="content">Content</label>
+            <input type="text" name="content" id="newcontent" class="form-control" />
+            <br>
+            <label for="starred">Starred</label>
+            <input type="checkbox" name="starred" id="newstarred" />
+            <br>
+            <label for="image">Image</label>
+            <input type="file" accept="image/* " name="image" id="newimage" class="form-control" />
+            <br>
+            <input type="submit" />
+          </div>
         </form>
+
         {{/addNote}}
         {{#editNote}}
         <h2>Edit Note</h2>
@@ -71,7 +75,7 @@
         </form>
         {{/replaceImage}}
       </div>
-      <div class="col" id="errorbox">
+      <div class="col-sm-3" id="errorbox">
         {{#errorbox}}
         <h3>ERRORS:</h3>
         <ul>
@@ -96,7 +100,22 @@
             <div class="row" id="noteper">
               <div class="col" id="notecontent">
                 <h3>Title: {{title}}</h3>
-                <p>{{content}}</p>
+                <p>{{content}}</p><br>
+                <div class="row" id="noteoptions">
+                  <div class="col">
+                    <button type="button"><a href="/deletenote/{{rowid}}">Delete</a></button>
+                  </div>
+                  <div class="col">
+                    <button type="button"><a href="/editnoteform/{{rowid}}">Edit</a></button>
+                  </div>
+                  <div class="col">
+                    <button type="button"><a href="/replaceimageform/{{rowid}}">Replace Image</a>
+                    </button>
+                  </div>
+                  <div class="col">
+                    <button type="button"><a href="/deleteimage/{{rowid}}">Delete Image</a></button>
+                  </div>
+                </div>
               </div>
               <div class="col" id="notemeta">
                 <div class="row">
@@ -126,12 +145,15 @@
               </div>
 
               <div class="col" id="noteimage">
-                <img src="/image/{{rowid}}">
+                <img src="/image/{{rowid}}" class="img-fluid">
               </div>
             </div>
-            {{/notes}}
-          </div>
 
+
+
+
+          </div>
+          {{/notes}}
           <div class="col" id="filtersortoptions">
             <div class="row" id="sortoptions">
               <h3>Sort Notes</h3>
@@ -182,8 +204,11 @@
             </div>
           </div>
         </div>
+
+
       </div>
     </div>
+  </div>
   </div>
 
 
