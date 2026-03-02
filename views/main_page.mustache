@@ -22,8 +22,12 @@
     </div>
     <div class="row">
       <div class="col">
-        <h2>Note Editor</h2>
-        <p><a href="/addnoteform">Create a new note</a></p>
+        <div class="row">
+          <div class="col">
+            <h2>Note Editor</h2>
+          </div>
+        </div>
+        <button type="button"><a href="/addnoteform">Create a new note</a></button>
 
         {{#addNote}}
         <form action="/addnote" method="post" enctype="multipart/form-data">
@@ -81,86 +85,114 @@
 
     <div class="row">
       <div class="col">
-        <h2>Existing Notes</h2>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col">
-        <h3>Sort Notes</h3>
-        <form action="/sort" method="get">
-          <h5>Sort order:</h5>
-          <label for="order">Ascending</label>
-          <input type="radio" id="sortascend" name="order" value="ASC" {{#sortascend}} checked {{/sortascend}} required>
-          <label for="order">Descending</label>
-          <input type="radio" id="sortdescend" name="order" value="DESC" {{#sortdescend}} checked {{/sortdescend}}>
-          <br>
-          <br>
-          <h5>Sort by:</h5>
-          <input type="radio" id="titlesort" name="sortby" value="title" {{#sorttitle}} checked {{/sorttitle}} required>
-          <label for="titlesort">Title</label>
-          <br>
-          <input type="radio" id="datesort" name="sortby" value="timestamp" {{#sortdate}} checked {{/sortdate}}>
-          <label for="datesort">Date Created</label>
-          <br>
-          <input type="radio" id="charcountsort" name="sortby" value="charcount" {{#sortcharcount}} checked
-            {{/sortcharcount}}>
-          <label for="charcountsort">Character Count</label>
-          <br>
-          <input type="submit" />
-        </form>
-      </div>
-      <div class="col">
-        <h4>Filter:</h4>
-        <form action="/filter" method="get">
-          <label for="filter">Starred</label>
-          <input type="checkbox" id="filterstarred" name="starred" onChange="this.form.submit()" {{#checked}} checked
-            {{/checked}}>
-          <br>
-          <!--<input type="submit" />-->
-        </form>
-        <p>
-          <a href="/resetdatabase">Delete all notes</a>
-        </p>
-      </div>
-    </div>
-    {{#notes}}
-    <div class="row">
-      <div class="col">
-        <h3>Title: {{title}}</h3>
-        <p>{{content}}</p>
-        <div class="col">
-          <div class="row">
-            <div class="col">
-              {{#starred}}
-              <i class="bi bi-star-fill"></i>
-              {{/starred}}
-              {{^starred}}
-              <i class="bi bi-star"></i>
-              {{/starred}}
-            </div>
-          </div>
-          <div class="row">
-            <div class="col">
-              <p>
-                Date created:
-                <br>
-                {{timestamp}}
-              </p>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col">
-              <p>{{charcount}} characters</p>
-            </div>
+        <div class="row">
+          <div class="col">
+            <h2>Notes</h2>
           </div>
         </div>
+
+
+
+        <div class="row">
+          <div class="col">
+            {{#notes}}
+
+            <div class="col">
+              <div class="row">
+                <div class="col">
+                  <h3>Title: {{title}}</h3>
+                  <p>{{content}}</p>
+                </div>
+                <div class="col">
+                  <div class="row">
+                    <div class="col">
+                      {{#starred}}
+                      <i class="bi bi-star-fill"></i>
+                      {{/starred}}
+                      {{^starred}}
+                      <i class="bi bi-star"></i>
+                      {{/starred}}
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col">
+                      <p>
+                        Date created:
+                        <br>
+                        {{timestamp}}
+                      </p>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col">
+                      <p>{{charcount}} characters</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col">
+                <img src="/image/{{rowid}}">
+              </div>
+            </div>
+          </div>
+          {{/notes}}
+          <br>
+          <div class="col">
+            <div class="row">
+              <div class="col">
+                <h3>Sort Notes</h3>
+                <form action="/sort" method="get">
+                  <h5>Sort order:</h5>
+                  <label for="order">Ascending</label>
+                  <input type="radio" id="sortascend" name="order" value="ASC" {{#sortascend}} checked {{/sortascend}}
+                    required>
+                  <label for="order">Descending</label>
+                  <input type="radio" id="sortdescend" name="order" value="DESC" {{#sortdescend}} checked
+                    {{/sortdescend}}>
+                  <br>
+                  <br>
+                  <h5>Sort by:</h5>
+                  <input type="radio" id="titlesort" name="sortby" value="title" {{#sorttitle}} checked {{/sorttitle}}
+                    required>
+                  <label for="titlesort">Title</label>
+                  <br>
+                  <input type="radio" id="datesort" name="sortby" value="timestamp" {{#sortdate}} checked {{/sortdate}}>
+                  <label for="datesort">Date Created</label>
+                  <br>
+                  <input type="radio" id="charcountsort" name="sortby" value="charcount" {{#sortcharcount}} checked
+                    {{/sortcharcount}}>
+                  <label for="charcountsort">Character Count</label>
+                  <br>
+                  <input type="submit" />
+                </form>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col">
+                <h4>Filter:</h4>
+                <form action="/filter" method="get">
+                  <label for="filter">Starred</label>
+                  <input type="checkbox" id="filterstarred" name="starred" onChange="this.form.submit()" {{#checked}}
+                    checked {{/checked}}>
+                  <br>
+                  <!--<input type="submit" />-->
+                </form>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col">
+                <p>
+                  <a href="/resetdatabase">Delete all notes</a>
+                </p>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
       </div>
-      <div class="col">
-        <img src="/image/{{rowid}}">
-      </div>
-    </div>
-    {{/notes}}
-    <!--
+      <!--
     <table>
         <tr>
             <th>Row ID</th>
@@ -195,9 +227,9 @@
 
     </table>
 -->
+    </div>
   </div>
-  </div>
-  </div>
+
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
