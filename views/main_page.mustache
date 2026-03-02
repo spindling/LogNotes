@@ -27,7 +27,7 @@
             <h2>Note Editor</h2>
           </div>
         </div>
-        <button type="button"><a href="/addnoteform">Create a new note</a></button>
+        <button type="button" class="btn btn-outline-primary"><a href="/addnoteform">Create a new note</a></button>
 
         {{#addNote}}
 
@@ -45,7 +45,7 @@
             <label for="image">Image</label>
             <input type="file" accept="image/* " name="image" id="newimage" class="form-control" />
             <br>
-            <input type="submit" />
+            <input type="submit" class="form-control" value="Submit" />
           </div>
         </form>
 
@@ -53,25 +53,30 @@
         {{#editNote}}
         <h2>Edit Note</h2>
         <form action="/editnote/{{formdata.rowid}}" method="post">
-          <label for="title">Title</label>
-          <input type="text" name="title" value="{{formdata.title}}" />
-          <br>
-          <label for="content">Content</label>
-          <input type="text" name="content" value="{{formdata.content}}" />
-          <br>
-          <label for="starred">Starred</label>
-          <input type="checkbox" name="starred" value="{{formdata.starred}}" />
-          <br>
-          <input type="submit" />
+          <div class="form-group">
+            <label for="title">Title</label>
+            <input type="text" name="title" value="{{formdata.title}}" class="form-control" />
+            <br>
+            <label for="content">Content</label>
+            <input type="text" name="content" value="{{formdata.content}}" class="form-control" />
+            <br>
+            <label for="starred">Starred</label>
+            <input type="checkbox" name="starred" value="{{formdata.starred}}" />
+            <br>
+            <input type="submit" class="form-control" value="Submit" />
+          </div>
         </form>
         {{/editNote}}
         {{#replaceImage}}
         <h2>Replace Image</h2>
         <form action="/replaceimage/{{formdata.rowid}}" method="post" enctype="multipart/form-data">
-          <label for="image">Image</label>
-          <input type="file" accept="image/* " name="image" value="{{formdata.image}}" required />
-          <br>
-          <input type="submit" />
+          <div class="form-group">
+            <label for="image">Image</label>
+            <input type="file" accept="image/* " name="image" value="{{formdata.image}}" required
+              class="form-control" />
+            <br>
+            <input type="submit" class="form-control" value="Submit" />
+          </div>
         </form>
         {{/replaceImage}}
       </div>
@@ -90,34 +95,40 @@
       <div class="col" id="">
         <div class="row">
           <div class="col">
-            <h2>Notes</h2>
+            <h2>Notes</h2><br>
           </div>
         </div>
         <div class="row" id="notessection">
-          <div class="col" id="notelist">
-
+          <div class="col-sm-9" id="notelist">
+            <hr>
             {{#notes}}
+
             <div class="row" id="noteper">
-              <div class="col" id="notecontent">
+              <div class="col-sm-6" id="notecontent">
                 <h3>Title: {{title}}</h3>
                 <p>{{content}}</p><br>
                 <div class="row" id="noteoptions">
-                  <div class="col">
-                    <button type="button"><a href="/deletenote/{{rowid}}">Delete</a></button>
+                  <div class="col-sm-4">
+                    <button type="button" class="btn btn-light"><a href="/deletenote/{{rowid}}">Delete</a></button>
                   </div>
-                  <div class="col">
-                    <button type="button"><a href="/editnoteform/{{rowid}}">Edit</a></button>
+                  <div class="col-sm-4">
+                    <button type="button" class="btn btn-light"><a href="/editnoteform/{{rowid}}">Edit</a></button>
                   </div>
-                  <div class="col">
-                    <button type="button"><a href="/replaceimageform/{{rowid}}">Replace Image</a>
+                </div>
+                <br>
+                <div class="row">
+                  <div class="col-sm-4">
+                    <button type="button" class="btn btn-light"><a href="/replaceimageform/{{rowid}}">Replace Image</a>
                     </button>
                   </div>
-                  <div class="col">
-                    <button type="button"><a href="/deleteimage/{{rowid}}">Delete Image</a></button>
+                  <div class="col-sm-4">
+                    <button type="button" class="btn btn-light"><a href="/deleteimage/{{rowid}}">Delete
+                        Image</a></button>
                   </div>
                 </div>
               </div>
-              <div class="col" id="notemeta">
+
+              <div class="col-sm-2" id="notemeta">
                 <div class="row">
                   <div class="col">
                     {{#starred}}
@@ -144,17 +155,14 @@
                 </div>
               </div>
 
-              <div class="col" id="noteimage">
+              <div class="col-sm-4" id="noteimage">
                 <img src="/image/{{rowid}}" class="img-fluid">
               </div>
             </div>
-
-
-
-
+            <hr>
+            {{/notes}}
           </div>
-          {{/notes}}
-          <div class="col" id="filtersortoptions">
+          <div class="col-sm-3" id="filtersortoptions">
             <div class="row" id="sortoptions">
               <h3>Sort Notes</h3>
               <form action="/sort" method="get">
@@ -179,7 +187,7 @@
                   {{/sortcharcount}}>
                 <label for="charcountsort">Character Count</label>
                 <br>
-                <input type="submit" />
+                <input type="submit" class="form-control" value="Submit" />
               </form>
             </div>
 
@@ -195,19 +203,20 @@
                 </form>
               </div>
             </div>
+            <br>
             <div class="row" id="resetoption">
               <div class="col">
-                <p>
+                <button type="button" class="btn btn-danger">
                   <a href="/resetdatabase">Delete all notes</a>
-                </p>
+                </button>
               </div>
             </div>
           </div>
         </div>
-
-
       </div>
+
     </div>
+  </div>
   </div>
   </div>
 
